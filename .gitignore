@@ -1,0 +1,11 @@
+# The weight of the universe
+node_modules 
+
+# Builds
+dist
+
+# Env Files
+.env
+
+# DB Files
+db.sqlite

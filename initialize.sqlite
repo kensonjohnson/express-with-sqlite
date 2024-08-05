@@ -1,0 +1,26 @@
+-- Create table for users
+CREATE TABLE IF NOT EXISTS users(
+  id integer PRIMARY KEY AUTOINCREMENT,
+  username text NOT NULL,
+  email text NOT NULL UNIQUE COLLATE NOCASE,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create table for lists
+CREATE TABLE IF NOT EXISTS lists(
+  id integer PRIMARY KEY AUTOINCREMENT,
+  title text NOT NULL,
+  user_id integer NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Create table for tasks
+CREATE TABLE IF NOT EXISTS tasks(
+  id integer PRIMARY KEY AUTOINCREMENT,
+  title text NOT NULL,
+  list_id integer NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (list_id) REFERENCES lists(id) ON DELETE CASCADE
+);
+
